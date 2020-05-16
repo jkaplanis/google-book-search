@@ -1,8 +1,19 @@
 const express = require("express");
 const axios = require("axios");
 const router = express.Router();
+const Book = require("../models/Book");
 
-// router.post("/googlebooks", (req, res) =);
+router.post("/books", (req, res) => {
+  Book.create(req.body).then(response => {
+    res.json(response);
+  });
+});
+
+router.post("/books", (req, res) => {
+  Book.deleteOne(req.body).then(response => {
+    res.json(response);
+  });
+});
 
 router.get("/googlebooks", (req, res) => {
   if (!req.query.q) {

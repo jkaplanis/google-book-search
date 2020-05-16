@@ -4,6 +4,9 @@ const gooogleRouter = require("./controllers/google");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+app.use(express.json()); // for parsing application/json
+app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 // initialize mongodb connection
 const mongoUri = process.env.MONGO_URI || "mongodb://localhost/googlebooks";
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });

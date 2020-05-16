@@ -15,8 +15,17 @@ function App() {
     });
   }
 
+  function saveBooks(id) {
+    const bookData = searchResult.find(book => book.googleId === id);
+    API.saveBook(bookData);
+  }
+
   return (
-    <Search searchResult={searchResult} getSearchedBooks={getSearchedBooks} />
+    <Search
+      searchResult={searchResult}
+      getSearchedBooks={getSearchedBooks}
+      saveBooks={saveBooks}
+    />
   );
 }
 

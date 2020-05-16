@@ -6,13 +6,13 @@ import BookDetails from "../components/BookDetails";
 import API from "../utils/API";
 import { get } from "mongoose";
 
-function Search({ searchResult, getSearchedBooks }) {
+function Search({ searchResult, getSearchedBooks, saveBooks }) {
   return (
     <>
       <Nav />
       <Jumbotron />
       <SearchField getSearchedBooks={getSearchedBooks} />
-      <BookDetails results={searchResult} />
+      <BookDetails results={searchResult} saveBooks={saveBooks} />
     </>
   );
 }

@@ -1,7 +1,11 @@
 import React from "react";
 
-function BookDetails({ results }) {
-  console.log(results);
+function BookDetails({ results, saveBooks }) {
+  function saveClickHandler(event, id) {
+    event.preventDefault();
+    saveBooks(id);
+  }
+
   return (
     <section className="container">
       <h3>Results</h3>
@@ -20,7 +24,13 @@ function BookDetails({ results }) {
                 <button type="submit" className="btn btn-primary">
                   View
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={event => {
+                    saveClickHandler(event, book.googleId);
+                  }}
+                >
                   Save
                 </button>
               </div>
