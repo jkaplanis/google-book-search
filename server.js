@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-
+const gooogleRouter = require("./controllers/google");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
@@ -12,6 +12,8 @@ mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+app.use("/api", gooogleRouter);
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
