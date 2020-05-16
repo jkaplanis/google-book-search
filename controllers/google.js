@@ -2,9 +2,11 @@ const express = require("express");
 const axios = require("axios");
 const router = express.Router();
 
+// router.post("/googlebooks", (req, res) =);
+
 router.get("/googlebooks", (req, res) => {
   if (!req.query.q) {
-    return res.status(400).send("Msust include 'q' param");
+    return res.status(400).send("Must include 'q' param");
   }
   // example query : q=intitle:harry+potter
 

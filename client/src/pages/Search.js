@@ -4,23 +4,15 @@ import Jumbotron from "../components/Jumbotron";
 import SearchField from "../components/SearchField";
 import BookDetails from "../components/BookDetails";
 import API from "../utils/API";
+import { get } from "mongoose";
 
-function Search(props) {
-  // const [books, setBooks] = useState([]);
-
-  // useEffect(() => {
-  //   API.booksSearch("harry+potter").then(res => {
-  //     setBooks(res.data);
-  //     console.log(res.data);
-  //   });
-  // }, []);
-
+function Search({ searchResult, getSearchedBooks }) {
   return (
     <>
       <Nav />
       <Jumbotron />
-      <SearchField />
-      <BookDetails results={props.results} />
+      <SearchField getSearchedBooks={getSearchedBooks} />
+      <BookDetails results={searchResult} />
     </>
   );
 }

@@ -6,14 +6,18 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
 
   useEffect(() => {
-    const search = "harry potter";
+    getSearchedBooks("harry potter");
+  }, []);
+
+  function getSearchedBooks(search) {
     API.booksSearch(search).then(response => {
       setSearchResult(response.data);
     });
-  }, []);
-  console.log(searchResult);
+  }
 
-  return <Search results={searchResult} />;
+  return (
+    <Search searchResult={searchResult} getSearchedBooks={getSearchedBooks} />
+  );
 }
 
 export default App;

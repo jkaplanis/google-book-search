@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SearchField() {
+function SearchField({ getSearchedBooks }) {
+  const [inputVal, setInputVal] = useState("");
+
+  function formSubmitHandler(event) {
+    event.preventDefault();
+    getSearchedBooks(inputVal);
+  }
+
+  function formChangedHandler(event) {
+    setInputVal(event.target.value);
+  }
   return (
     <section className="row">
       <div className="card col">
@@ -9,11 +19,17 @@ function SearchField() {
           <form>
             <div className="form-group">
               <input
+                onChange={formChangedHandler}
+                value={inputVal}
                 type="text"
                 className="form-control"
                 placeholder="Book Title"
               />
-              <button type="submit" className="btn btn-primary">
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={formSubmitHandler}
+              >
                 Search
               </button>
             </div>
