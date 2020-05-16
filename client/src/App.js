@@ -13,7 +13,7 @@ function App() {
   }, []);
   console.log(searchResult);
 
-  return <Search />;
+  return <Search results={searchResult} />;
 }
 
 export default App;

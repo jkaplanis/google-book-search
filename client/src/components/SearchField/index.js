@@ -2,15 +2,15 @@ import React from "react";
 
 function SearchField() {
   return (
-    <section classname="row">
-      <div classname="card col">
-        <div classname="card-body">
+    <section className="row">
+      <div className="card col">
+        <div className="card-body">
           <h3>Book Search</h3>
           <form>
-            <div classname="form-group">
+            <div className="form-group">
               <input
                 type="text"
-                classname="form-control"
+                className="form-control"
                 placeholder="Book Title"
               />
               <button type="submit" className="btn btn-primary">

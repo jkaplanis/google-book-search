@@ -1,35 +1,41 @@
 import React from "react";
 
-function BookDetails() {
+function BookDetails({ results }) {
+  console.log(results);
   return (
-    <section classname="container">
+    <section className="container">
       <h3>Results</h3>
-      <div classname="card">
-        <div className="row">
-          <div className="col-sm">
-            <h4>Book Title</h4>
-            <p>Written by: Authors</p>
-          </div>
-
-          <div className="col-sm">
+      {results.map(book => {
+        return (
+          <div key={book.googleId}>
             {" "}
-            <button type="submit" className="btn btn-primary">
-              View
-            </button>
-            <button type="submit" className="btn btn-primary">
-              Save
-            </button>
+            <div className="row">
+              <div className="col-sm">
+                <h4>{book.title}</h4>
+                <p>Written by: {book.authors}</p>
+              </div>
+
+              <div className="col-sm">
+                {" "}
+                <button type="submit" className="btn btn-primary">
+                  View
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Save
+                </button>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-4">
+                <img src={book.image} />
+              </div>
+              <div className="col-sm-8">
+                <p>{book.description}</p>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-sm-4">
-            <img src="https://via.placeholder.com/150" />
-          </div>
-          <div className="col-sm-8">
-            <p>description alsdkjhfsdaoghldfksjghdflkjghldfkjghldfskgh</p>
-          </div>
-        </div>
-      </div>
+        );
+      })}
     </section>
   );
 }
