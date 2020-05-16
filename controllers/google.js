@@ -13,19 +13,8 @@ router.get("/googlebooks", (req, res) => {
       params: { q: req.query }
     })
     .then(response => {
-      const validResults = response.data.items.map(item => {
-        const googleId = item.id;
-        const {
-          title,
-          authors,
-          description,
-          imageLinks,
-          infoLink
-        } = item.volumeInfo;
-        const image = imageLinks.thumbnail;
-        const link = infoLink;
-      });
-      return res.json(response.data.items);
+      const validBookData = createBooksFromGoogleData(response.data);
+      return res.json(validBookData);
     })
     .catch(error => {
       if (error.response) {
@@ -36,5 +25,29 @@ router.get("/googlebooks", (req, res) => {
       }
     });
 });
+
+function createBooksFromGoogleData(googleData) {
+  return googleData.items
+    .map(item => {
+      const googleId = item.id;
+      const {
+        title,
+        authors,
+        description,
+        imageLinks,
+        infoLink
+      } = item.volumeInfo;
+      const image = imageLinks.thumbnail;
+      const link = infoLink;
+      return { title, authors, description, image, link, googleId };
+    })
+    .filter(item => validateBook(item));
+}
+
+function validateBook({ title, authors, description, image, link, googleId }) {
+  return (
+    title && Array.isArray(authors) && description && image && link && googleId
+  );
+}
 
 module.exports = router;
