@@ -1,8 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import API from "./utils/API";
 
 function App() {
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    const search = "harry potter";
+    API.booksSearch(search).then(response => {
+      setSearchResult(response.data);
+    });
+  }, []);
+  console.log(searchResult);
+
   return (
     <div className="App">
       <header className="App-header">
