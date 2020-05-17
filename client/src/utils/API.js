@@ -9,5 +9,13 @@ export default {
 
   saveBook: bookData => {
     return axios.post("/api/books", bookData);
+  },
+
+  getSavedBooks: () => {
+    return axios.get("/api/books");
+  },
+
+  deleteBook: id => {
+    return axios.post("/api/books" + id);
   }
 };

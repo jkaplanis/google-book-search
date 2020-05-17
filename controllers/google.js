@@ -9,8 +9,14 @@ router.post("/books", (req, res) => {
   });
 });
 
-router.post("/books", (req, res) => {
-  Book.deleteOne(req.body).then(response => {
+router.delete("/books/:id", (req, res) => {
+  Book.deleteOne({ googleId: req.params.id }).then(response => {
+    res.json(response);
+  });
+});
+
+router.get("/books", (req, res) => {
+  Book.find({}).then(response => {
     res.json(response);
   });
 });
